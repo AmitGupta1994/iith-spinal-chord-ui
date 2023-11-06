@@ -14,8 +14,8 @@ class SpinalChordSegment(QWidget):
         self.rect_width = 400
 
         # Calculate the height of the rectangle based on the number of circles
-        self.circle_radius = 2
-        self.circle_spacing = 7
+        self.circle_radius = 1.8
+        self.circle_spacing = 6
         self.num_circles = 2
         # self.circle_y = 0
         self.circle_y = 4
@@ -32,6 +32,10 @@ class SpinalChordSegment(QWidget):
         self.circle_color = QColor(0, 0, 0)  # Default circle color
 
         self.num_rows = int(len(muscles_name_list) / 2)
+
+    def setColor(self, color):
+        self.color = color
+        self.update()  # Trigger a repaint
 
     def setCircleColor(self, color):
         self.circle_color = color
@@ -132,7 +136,7 @@ class SpinalChordSegment(QWidget):
             painter.drawText(circle_name_x - circle_name_rect.width(), circle_name_y, circle_name)
 
             # Draw the first circle
-            painter.setBrush(QBrush(QColor(0, 0, 255)))  # Circle color
+            painter.setBrush(QBrush(self.circle_color))  # Circle color
             painter.drawEllipse(circle_x, self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius,
                                 2 * self.circle_radius)
 
@@ -146,7 +150,7 @@ class SpinalChordSegment(QWidget):
             painter.drawText(circle_x + 20 * (self.circle_radius + self.circle_spacing), circle_name_y, circle_name)
 
             # Draw the second circle
-            painter.setBrush(QBrush(QColor(0, 0, 255)))  # Circle color
+            painter.setBrush(QBrush(self.circle_color))  # Circle color
             painter.drawEllipse(circle_x + 18 * (self.circle_radius + self.circle_spacing),
                                 self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius, 2 * self.circle_radius)
 

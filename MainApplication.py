@@ -1,7 +1,9 @@
+import random
 import sys
 
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout, QWidget, QVBoxLayout
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QPixmap, QColor
+from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout, QWidget, QVBoxLayout, QScrollArea
 from PyQt5.uic import loadUi
 
 from SpinalChordMuscle import SpinalChordMuscle
@@ -187,11 +189,15 @@ class MainApplication(QMainWindow):
         # Create a layout for the main window
         self.segments = []
 
+        # Create a scrollable area
+        scroll_area = QScrollArea()
+        scroll_area.setWidgetResizable(True)
         main_layout = QVBoxLayout()
 
-        central_widget = QWidget()
-        central_widget.setLayout(main_layout)
-        self.setCentralWidget(central_widget)
+        # Create a widget to hold the rectangles
+        rectangles_widget = QWidget()
+        rectangles_layout = QVBoxLayout(rectangles_widget)
+
 
         self.segments.append(self.segment_c5)
         self.segments.append(self.segment_c6)
@@ -207,24 +213,52 @@ class MainApplication(QMainWindow):
         self.segments.append(self.segment_s1)
         self.segments.append(self.segment_s2)
 
-        main_layout.addWidget(self.segment_c5)
-        main_layout.addWidget(self.segment_c6)
-        main_layout.addWidget(self.segment_c7)
-        main_layout.addWidget(self.segment_c8)
-        main_layout.addWidget(self.segment_t7_t12)
-        main_layout.addWidget(self.segment_l1)
-        main_layout.addWidget(self.segment_l2)
-        main_layout.addWidget(self.segment_l3)
-        main_layout.addWidget(self.segment_l4)
-        main_layout.addWidget(self.segment_l5)
-        main_layout.addWidget(self.segment_s1)
-        main_layout.addWidget(self.segment_s2)
+        rectangles_layout.addWidget(self.segment_c5)
+        rectangles_layout.addWidget(self.segment_c6)
+        rectangles_layout.addWidget(self.segment_c7)
+        rectangles_layout.addWidget(self.segment_c8)
+        rectangles_layout.addWidget(self.segment_t7_t12)
+        rectangles_layout.addWidget(self.segment_l1)
+        rectangles_layout.addWidget(self.segment_l2)
+        rectangles_layout.addWidget(self.segment_l3)
+        rectangles_layout.addWidget(self.segment_l4)
+        rectangles_layout.addWidget(self.segment_l5)
+        rectangles_layout.addWidget(self.segment_s1)
+        rectangles_layout.addWidget(self.segment_s2)
 
         # Add the UI loaded from the .ui file to the main layout
         main_layout.addWidget(self.centralWidget())
 
-        # Set the main layout for the main window
+        # Set the main layout for the rectangles widget
+        rectangles_widget.setLayout(rectangles_layout)
 
+        # Set the rectangles widget as the content for the scroll area
+        scroll_area.setWidget(rectangles_widget)
+
+        # Add the scroll area to the main layout
+        main_layout.addWidget(scroll_area)
+
+        # Set the main layout for the main window
+        central_widget = QWidget()
+        central_widget.setLayout(main_layout)
+        self.setCentralWidget(central_widget)
+
+        # for index, segment in enumerate(self.segments):
+        #     segment.setCircleColor(QColor(255, 0, 0) if index % 2 == 0 else QColor(0, 0, 255))  # Alternate colors
+        # Create a QTimer to update colors from the main window
+        self.color_timer = QTimer(self)
+        self.color_timer.timeout.connect(self.updateColors)
+        self.color_timer.start(1000)  # 1000 ms (1 second) interval
+
+    def updateColors(self):
+        # Update the colors of the rectangles
+        for segment in self.segments:
+            # Generate random colors for the circles
+            circle_colors = [
+                [(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)) for _ in range(2)]
+                for _ in range(segment.num_rows)
+            ]
+            segment.setCircleColor(QColor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
 
     def initialize_ui(self):
         # self.ui.layout.addWidget(self.segment_c5)
