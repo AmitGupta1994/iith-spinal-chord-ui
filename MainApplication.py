@@ -189,9 +189,10 @@ class MainApplication(QMainWindow):
         # Create a layout for the main window
         self.segments = []
 
-        # Create a scrollable area
-        scroll_area = QScrollArea()
-        scroll_area.setWidgetResizable(True)
+        # # Create a scrollable area
+        # scroll_area = QScrollArea()
+        # scroll_area.setWidgetResizable(True)
+
         main_layout = QVBoxLayout()
 
         # Create a widget to hold the rectangles
@@ -213,30 +214,30 @@ class MainApplication(QMainWindow):
         self.segments.append(self.segment_s1)
         self.segments.append(self.segment_s2)
 
-        rectangles_layout.addWidget(self.segment_c5)
-        rectangles_layout.addWidget(self.segment_c6)
-        rectangles_layout.addWidget(self.segment_c7)
-        rectangles_layout.addWidget(self.segment_c8)
-        rectangles_layout.addWidget(self.segment_t7_t12)
-        rectangles_layout.addWidget(self.segment_l1)
-        rectangles_layout.addWidget(self.segment_l2)
-        rectangles_layout.addWidget(self.segment_l3)
-        rectangles_layout.addWidget(self.segment_l4)
-        rectangles_layout.addWidget(self.segment_l5)
-        rectangles_layout.addWidget(self.segment_s1)
-        rectangles_layout.addWidget(self.segment_s2)
+        main_layout.addWidget(self.segment_c5)
+        main_layout.addWidget(self.segment_c6)
+        main_layout.addWidget(self.segment_c7)
+        main_layout.addWidget(self.segment_c8)
+        main_layout.addWidget(self.segment_t7_t12)
+        main_layout.addWidget(self.segment_l1)
+        main_layout.addWidget(self.segment_l2)
+        main_layout.addWidget(self.segment_l3)
+        main_layout.addWidget(self.segment_l4)
+        main_layout.addWidget(self.segment_l5)
+        main_layout.addWidget(self.segment_s1)
+        main_layout.addWidget(self.segment_s2)
 
         # Add the UI loaded from the .ui file to the main layout
-        main_layout.addWidget(self.centralWidget())
+        # main_layout.addWidget(self.centralWidget())
 
         # Set the main layout for the rectangles widget
-        rectangles_widget.setLayout(rectangles_layout)
+        # rectangles_widget.setLayout(rectangles_layout)
 
         # Set the rectangles widget as the content for the scroll area
-        scroll_area.setWidget(rectangles_widget)
+        # scroll_area.setWidget(rectangles_widget)
 
         # Add the scroll area to the main layout
-        main_layout.addWidget(scroll_area)
+        # main_layout.addWidget(scroll_area)
 
         # Set the main layout for the main window
         central_widget = QWidget()
