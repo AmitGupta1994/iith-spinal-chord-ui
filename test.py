@@ -6,13 +6,32 @@ from PyQt5 import uic
 class VerticalRectangles(QWidget):
     def __init__(self):
         super().__init__()
-        self.setFixedWidth(100)  # Adjust the width as needed
+
+        self.setFixedWidth(300)  # Adjust the width as needed
         self.setAutoFillBackground(True)
+
+    # def paintEvent(self, event):
+    #     painter = QPainter(self)
+    #     painter.setBrush(QBrush(QColor(255, 0, 0)))  # Change the color as needed
+    #     painter.drawRect(0, 0, 300, 50)
 
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.setBrush(QBrush(QColor(255, 0, 0)))  # Change the color as needed
-        painter.drawRect(0, 0, 50, 50)
+        painter.drawRect(0, 0, 300, 300)
+
+        # Draw circles
+        circle_radius = 20
+        circle_spacing = 10
+        circle_x = circle_radius + circle_spacing
+        circle_y = self.height() // 2
+
+        for _ in range(2):  # Two columns
+            for _ in range(2):  # Two rows
+                painter.setBrush(QBrush(QColor(0, 0, 255)))  # Change the circle color as needed
+                painter.drawEllipse(circle_x - circle_radius, circle_y - circle_radius, circle_radius * 2,
+                                    circle_radius * 2)
+                circle_x += 2 * (circle_radius + circle_spacing)
 
 class MyWindow(QMainWindow):
     def __init__(self):

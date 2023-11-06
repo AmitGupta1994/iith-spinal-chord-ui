@@ -1,7 +1,7 @@
 import sys
 
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout, QWidget
 from PyQt5.uic import loadUi
 
 from SpinalChordMuscle import SpinalChordMuscle
@@ -28,6 +28,20 @@ class MainApplication(QMainWindow):
         # self.segment_c6 = SpinalChordSegment("C3",[],[100,500])
 
         # self.initialize_ui()
+
+        # Create a layout for the main window
+        main_layout = QHBoxLayout()
+
+        # Add the vertical rectangles widget to the left side
+        main_layout.addWidget(self.segment_c5)
+
+        # Add the UI loaded from the .ui file to the main layout
+        main_layout.addWidget(self.centralWidget())
+
+        # Set the main layout for the main window
+        central_widget = QWidget()
+        central_widget.setLayout(main_layout)
+        self.setCentralWidget(central_widget)
 
     def initialize_ui(self):
         # self.ui.layout.addWidget(self.segment_c5)
