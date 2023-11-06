@@ -3,38 +3,27 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout,
 from PyQt5.QtGui import QColor, QPainter, QBrush
 from PyQt5 import uic
 
-class VerticalRectangles(QWidget):
-    def __init__(self):
+class Rectangle(QWidget):
+    def __init__(self,width,height):
         super().__init__()
-
-        self.setFixedWidth(300)  # Adjust the width as needed
         self.setAutoFillBackground(True)
+        self.setFixedWidth(width)  # Adjust the width as needed
+        self.setFixedHeight(height)  # Adjust the width as needed
 
-    # def paintEvent(self, event):
-    #     painter = QPainter(self)
-    #     painter.setBrush(QBrush(QColor(255, 0, 0)))  # Change the color as needed
-    #     painter.drawRect(0, 0, 300, 50)
+        # self.width = width
+        # self.height = height
+
+    def setColor(self, color):
+        self.color = color
+        self.update()  # Trigger a repaint
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        painter.setBrush(QBrush(QColor(255, 0, 0)))  # Change the color as needed
-        painter.drawRect(0, 0, 300, 300)
-
-        # Draw circles
-        circle_radius = 20
-        circle_spacing = 10
-        circle_x = circle_radius + circle_spacing
-        circle_y = self.height() // 2
-
-        for _ in range(2):  # Two columns
-            for _ in range(2):  # Two rows
-                painter.setBrush(QBrush(QColor(0, 0, 255)))  # Change the circle color as needed
-                painter.drawEllipse(circle_x - circle_radius, circle_y - circle_radius, circle_radius * 2,
-                                    circle_radius * 2)
-                circle_x += 2 * (circle_radius + circle_spacing)
+        painter.setBrush(QBrush(self.color))
+        painter.drawRect(0, 0, self.width(), self.height())
 
 class MyWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, num_rectangles):
         super().__init__()
 
         # Load the .ui file
@@ -45,11 +34,23 @@ class MyWindow(QMainWindow):
         self.button2 = self.findChild(QPushButton, "button2")
 
         # Create a layout for the main window
-        main_layout = QHBoxLayout()
+        main_layout = QVBoxLayout()
 
-        # Add the vertical rectangles widget to the left side
-        vertical_rectangles = VerticalRectangles()
-        main_layout.addWidget(vertical_rectangles)
+        # Create and add the rectangle widgets to the layout
+        self.rectangles = []
+
+        # for _ in range(num_rectangles):
+        rectangle1 = Rectangle(40,100)
+        rectangle2 = Rectangle(100, 400)
+        rectangle3 = Rectangle(10, 100)
+
+        self.rectangles.append(rectangle1)
+        self.rectangles.append(rectangle2)
+        self.rectangles.append(rectangle3)
+
+        main_layout.addWidget(rectangle1)
+        main_layout.addWidget(rectangle2)
+        main_layout.addWidget(rectangle3)
 
         # Add the UI loaded from the .ui file to the main layout
         main_layout.addWidget(self.centralWidget())
@@ -63,6 +64,10 @@ class MyWindow(QMainWindow):
         # self.button1.clicked.connect(self.button1_clicked)
         # self.button2.clicked.connect(self.button2_clicked)
 
+        # Example of dynamically updating rectangle colors
+        for index, rectangle in enumerate(self.rectangles):
+            rectangle.setColor(QColor(255, 0, 0) if index % 2 == 0 else QColor(0, 0, 255))  # Alternate colors
+
     def button1_clicked(self):
         print("Button 1 clicked!")
 
@@ -71,6 +76,7 @@ class MyWindow(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MyWindow()
+    num_rectangles = 4  # Specify the number of rectangles
+    window = MyWindow(num_rectangles)
     window.show()
     sys.exit(app.exec_())
