@@ -2,8 +2,10 @@ import random
 import sys
 import threading
 
-from PyQt5.QtCore import QTimer, Qt, QObject, pyqtSignal
+from PyQt5.QtCore import QTimer, Qt, QObject, pyqtSignal, QUrl
 from PyQt5.QtGui import QPixmap, QColor
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
+from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout, QWidget, QVBoxLayout, QScrollArea, QPushButton
 from PyQt5.uic import loadUi
 from PyQt5.uic.uiparser import QtCore
@@ -21,6 +23,7 @@ class MainApplication(QMainWindow):
         self.ui = loadUi("iith-spinal-chord-main.ui", self)
 
         self.setWindowTitle("Spinal Chord")
+
 
         # C5
         self.segment_c5_muscles = [
@@ -266,14 +269,46 @@ class MainApplication(QMainWindow):
         rec_main_layout.addWidget(self.segment_s1)
         rec_main_layout.addWidget(self.segment_s2)
 
+        # Create a video player and video widget
+        video_layout = QHBoxLayout()
+
+        self.video_player = QMediaPlayer()
+        self.video_widget = QVideoWidget()
+        self.video_player.setVideoOutput(self.video_widget)
+        video_layout.addWidget(self.video_widget)
+
+
         # Add all to main layout
+        # main_layout.addLayout(self.video_widget)
         main_layout.addLayout(buttons_layout)
         main_layout.addLayout(rec_main_layout)
+        main_layout.addWidget(self.video_widget)
 
         # Set the main layout for the main window
         central_widget = QWidget()
-        central_widget.setLayout(main_layout)
+        # central_widget.setLayout(main_layout)
         self.setCentralWidget(central_widget)
+        self.layout = QHBoxLayout(central_widget)
+
+        # Create a video widget
+        self.video_widget = QVideoWidget()
+        self.video_widget.setMaximumSize(600, 600)
+
+
+        # Create a video player and set the video output
+        self.video_player = QMediaPlayer()
+        self.video_player.setVideoOutput(self.video_widget)
+
+        # Create a play button
+        self.play_button = QPushButton("Play Video")
+        self.play_button.clicked.connect(self.play_video)
+
+        # Add the video widget to the layout
+        self.layout.addLayout(main_layout)
+        self.layout.addWidget(self.video_widget)
+
+        # self.play_video()
+
 
         # Update Every 1 ms
         # self.color_timer = QTimer(self)
@@ -313,7 +348,17 @@ class MainApplication(QMainWindow):
         for segment in self.segments:
             segment.update_segment()
 
+    def play_video(self):
+        # video_url = "S17_Tadasana.mp4"
+        media = QMediaContent(QUrl.fromLocalFile('/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Malasana.mp4'))
+        self.video_player.setMedia(media)
+        self.video_player.play()
+
     def button1_clicked(self):
+        video_thread = threading.Thread(target=self.play_video())
+        # Start the thread
+        video_thread.start()
+
         split_value = "_Ia"
         print("btn1")
         df = pd.read_csv('S17_Tadasana_Afferents_Test.csv')
