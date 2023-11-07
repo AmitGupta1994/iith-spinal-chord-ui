@@ -141,17 +141,17 @@ class MainApplication(QMainWindow):
         # L5
         self.segment_l5_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
+            SpinalChordMuscle('glut_med1_l', 'Gluteus Medius 1 Left'), SpinalChordMuscle('glut_med1_r', 'Gluteus Medius 1 Right'),
+            SpinalChordMuscle('glut_med2_l', 'Gluteus Medius 2 Left'), SpinalChordMuscle('glut_med2_r', 'Gluteus Medius 2 Right'),
+            SpinalChordMuscle('glut_med3_l', 'Gluteus Medius 3 Left'), SpinalChordMuscle('glut_med3_r', 'Gluteus Medius 3 Right'),
+            SpinalChordMuscle('tfl_l', 'Tensor Fascia Latae Left'), SpinalChordMuscle('tfl_r', 'Tensor Fascia Latae Right'),
+            SpinalChordMuscle('tib_ant_l', 'Tibialis Anterior Left'), SpinalChordMuscle('tib_ant_r', 'Tibialis Anterior Right'),
+            SpinalChordMuscle('tib_post_l', 'Tibialis Posterior Left'), SpinalChordMuscle('tib_post_r', 'Tibialis Posterior Right'),
+            SpinalChordMuscle('glut_max1_l', 'Gluteus Maximus 1 Left'), SpinalChordMuscle('glut_max1_r', 'Gluteus Maximus 1 Right'),
+            SpinalChordMuscle('glut_max2_l', 'Gluteus Maximus 2 Left'), SpinalChordMuscle('glut_max2_r', 'Gluteus Maximus 2 Right'),
+            SpinalChordMuscle('glut_max3_l', 'Gluteus Maximus 3 Left'), SpinalChordMuscle('glut_max3_r', 'Gluteus Maximus 3 Right'),
+            SpinalChordMuscle('gem_l', 'Gemelli Left'), SpinalChordMuscle('gem_r', 'Gemelli Left'),
+            SpinalChordMuscle('quad_fem_l', 'Quadratus Femoris Left'), SpinalChordMuscle('quad_fem_r', 'Quadratus Femoris Right'),
 
         ]
         self.segment_l5 = SpinalChordSegment("L5", self.segment_l5_muscles)
