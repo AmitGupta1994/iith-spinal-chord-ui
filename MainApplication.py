@@ -79,7 +79,7 @@ class MainApplication(QMainWindow):
         # C8
         self.segment_c8_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
+            SpinalChordMuscle('ANC_l', 'Anconeus Right'), SpinalChordMuscle('ANC', 'Anconeus Right'),
 
         ]
         self.segment_c8 = SpinalChordSegment("C8", self.segment_c8_muscles)
