@@ -60,18 +60,18 @@ class MainApplication(QMainWindow):
         # C7
         self.segment_c7_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
+            SpinalChordMuscle('CORB_l', 'Corachobrachialis Left'), SpinalChordMuscle('CORB', 'Corachobrachialis Right'),
+            SpinalChordMuscle('PECM1_l', 'Pectoralis Major 1 Left'), SpinalChordMuscle('PECM1', 'Pectoralis Major 1 Right'),
+            SpinalChordMuscle('PECM2_l', 'Pectoralis Major 2 Left'), SpinalChordMuscle('PECM2', 'Pectoralis Major 2 Right'),
+            SpinalChordMuscle('PECM3_l', 'Pectoralis Major 3 Left'), SpinalChordMuscle('PECM3', 'Pectoralis Major 3 Right'),
+            SpinalChordMuscle('ANC_l', 'Anconeus Left'), SpinalChordMuscle('ANC', 'Anconeus Right'),
+            SpinalChordMuscle('LAT1_l', 'Latissimus Dorsi 1 Left'), SpinalChordMuscle('LAT1', 'Latissimus Dorsi 1 Right'),
+            SpinalChordMuscle('LAT2_l', 'Latissimus Dorsi 2 Left'), SpinalChordMuscle('LAT2', 'Latissimus Dorsi 2 Right'),
+            SpinalChordMuscle('LAT3_l', 'Latissimus Dorsi 3 Left'), SpinalChordMuscle('LAT3', 'Latissimus Dorsi 3 Right'),
+            SpinalChordMuscle('PT_l', 'Pronator Teres Left'), SpinalChordMuscle('PT', 'Pronator Teres Right'),
+            SpinalChordMuscle('TRIlat_l', 'Triceps Lateral Head Left'), SpinalChordMuscle('TRIlat', 'Triceps Lateral Head Right'),
+            SpinalChordMuscle('TRIlong_l', 'Triceps Long Head Left'), SpinalChordMuscle('TRIlong', 'Triceps Long Head Right'),
+            SpinalChordMuscle('TRImed_l', 'Triceps Medial Head Left'), SpinalChordMuscle('TRImed', 'Triceps Medial Head Right'),
 
         ]
         self.segment_c7 = SpinalChordSegment("C7", self.segment_c7_muscles)
