@@ -103,11 +103,11 @@ class MainApplication(QMainWindow):
         # L2
         self.segment_l2_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
+            SpinalChordMuscle('grac_l', 'Gracilis Left'), SpinalChordMuscle('grac_r', 'Gracilis Right'),
+            SpinalChordMuscle('iliacus_l', 'Iliacus Left'), SpinalChordMuscle('iliacus_r', 'Iliacus Right'),
+            SpinalChordMuscle('pect_l', 'Pectineus Left'), SpinalChordMuscle('pect_r', 'Pectineus Right'),
+            SpinalChordMuscle('add_mag2_l', 'Adductor Magnus Left'), SpinalChordMuscle('add_mag2_r', 'Adductor Magnus Right'),
+            SpinalChordMuscle('sar_l', 'Sartorius Left'), SpinalChordMuscle('sar_r', 'Sartorius Right'),
 
         ]
         self.segment_l2 = SpinalChordSegment("L2", self.segment_l2_muscles)
