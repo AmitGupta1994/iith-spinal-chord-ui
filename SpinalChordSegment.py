@@ -29,7 +29,7 @@ class SpinalChordSegment(QWidget):
         self.setFixedHeight(self.rect_height)  # Adjust the width as needed
 
         self.setAutoFillBackground(True)
-        self.circle_color = QColor(0, 0, 0)  # Default circle color
+        self.circle_color = QColor(255, 255, 255)  # Default circle color
 
         self.num_rows = int(len(muscles_name_list) / 2)
 
@@ -72,13 +72,7 @@ class SpinalChordSegment(QWidget):
             # Draw the name of the first circle to the left of the circle
             circle_color_value = self.muscles_name_list[count].value
 
-            circle_color = QColor(0, 0, 0)
-            if circle_color_value == 1:
-                circle_color = QColor(255, 0, 0)
-            elif circle_color_value == 2:
-                circle_color = QColor(0, 255, 0)
-            elif circle_color_value == 3:
-                circle_color = QColor(0, 0, 255)
+            circle_color = QColor(circle_color_value, 0, 0)
 
             circle_name = self.muscles_name_list[count].desc
             circle_name_font = QFont("Arial", 8)  # Adjust the font as needed
@@ -96,13 +90,7 @@ class SpinalChordSegment(QWidget):
             # Draw the name of the second circle to the right of the circle
             circle_color_value = self.muscles_name_list[count+1].value
 
-            circle_color = QColor(0, 0, 0)
-            if circle_color_value == 1:
-                circle_color = QColor(255, 0, 0)
-            elif circle_color_value == 2:
-                circle_color = QColor(0, 255, 0)
-            elif circle_color_value == 3:
-                circle_color = QColor(0, 0, 255)
+            circle_color = QColor(circle_color_value, 0, 0)
 
             circle_name = self.muscles_name_list[count + 1].desc
             circle_name_font = QFont("Arial", 8)  # Adjust the font as needed

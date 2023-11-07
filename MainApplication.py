@@ -1,11 +1,13 @@
 import random
 import sys
+import threading
 
-from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtCore import QTimer, Qt, QObject, pyqtSignal
 from PyQt5.QtGui import QPixmap, QColor
 from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout, QWidget, QVBoxLayout, QScrollArea, QPushButton
 from PyQt5.uic import loadUi
 from PyQt5.uic.uiparser import QtCore
+import pandas as pd
 
 from SpinalChordMuscle import SpinalChordMuscle
 from SpinalChordSegment import SpinalChordSegment
@@ -208,6 +210,15 @@ class MainApplication(QMainWindow):
         self.button8 = QPushButton("Virkshasana-Activation")
         self.button8.setFixedSize(btn_width, btn_height)
 
+        self.button1.clicked.connect(self.button1_clicked)
+        self.button2.clicked.connect(self.button2_clicked)
+        self.button3.clicked.connect(self.button3_clicked)
+        self.button4.clicked.connect(self.button4_clicked)
+        self.button5.clicked.connect(self.button5_clicked)
+        self.button6.clicked.connect(self.button6_clicked)
+        self.button7.clicked.connect(self.button7_clicked)
+        self.button8.clicked.connect(self.button8_clicked)
+
         # Create a horizontal layout for the buttons at the top
         buttons_layout = QVBoxLayout()
         buttons_layout.setAlignment(Qt.AlignCenter)
@@ -264,19 +275,12 @@ class MainApplication(QMainWindow):
         central_widget.setLayout(main_layout)
         self.setCentralWidget(central_widget)
 
-        # Update Every 1 second
-        self.color_timer = QTimer(self)
-        self.color_timer.timeout.connect(self.updateColors)
-        self.color_timer.start(1000)  # 1000 ms (1 second) interval
+        # Update Every 1 ms
+        # self.color_timer = QTimer(self)
+        # self.color_timer.timeout.connect(self.updateColors)
+        # self.color_timer.start(1)  # 1000 ms (1 second) interval
 
-    def updateColors(self):
 
-        # TODO Loop for the ROW in the File to be Provided
-        for segment in self.segments:
-            for muscles in segment.muscles_name_list:
-                muscles.value = random.randint(0, 3)
-
-            segment.update_segment()
 
     def initialize_ui(self):
         # self.ui.layout.addWidget(self.segment_c5)
@@ -284,6 +288,176 @@ class MainApplication(QMainWindow):
         # self.setCentralWidget(self.segment_c6)
 
         pass
+
+    def update_segments(self):
+        # TODO Play the video
+
+        for index, row in self.df.iterrows():
+            for segment in self.segments:
+                for muscles in segment.muscles_name_list:
+                    try:
+                        index_ = self.column_names.index(muscles.name)
+                        muscles.value = row[index_]
+                    except:
+                        pass
+
+                segment.update_segment()
+
+    def updateColors(self):
+        for segment in self.segments:
+            segment.update_segment()
+
+    def button1_clicked(self):
+        split_value = "_Ia"
+        print("btn1")
+        df = pd.read_csv('S17_Tadasana_Afferents_Test.csv')
+        print('shape before filter:', df.shape)
+
+        filtered_columns = df.filter(like=split_value, axis=1)
+        df = df[filtered_columns.columns]
+        print('shape after filter:', df.shape)
+
+        # Split Column name so as to remove '_Ia'
+        df.columns = [col.split(split_value)[0] for col in df.columns]
+        print("final df columns", df.columns)
+
+        # print(df)
+
+        for column in df.columns:
+            min_val = df[column].min()
+            max_val = df[column].max()
+
+            if min_val == max_val:
+                df[column] = 128  # If min and max are the same, set the column to 128 (midpoint of 0-255)
+            else:
+                df[column] = (df[column] - min_val) / (max_val - min_val) * 255
+
+        print("Original DataFrame:")
+        # print(df)
+
+        self.df = df
+        self.column_names = df.columns.tolist()
+
+        update_segments_thread = threading.Thread(target=self.update_segments)
+        # Start the thread
+        update_segments_thread.start()
+
+        # update_segments_thread.join()
+
+        # self.color_timer = QTimer(self)
+        # self.color_timer.timeout.connect(self.updateColors)
+        # self.color_timer.start(1000)
+
+
+    def button2_clicked(self):
+        split_value = "_II"
+        print("btn1")
+        df = pd.read_csv('S17_Tadasana_Afferents_Test.csv')
+        print('shape before filter:', df.shape)
+
+        filtered_columns = df.filter(like=split_value, axis=1)
+        df = df[filtered_columns.columns]
+        print('shape after filter:', df.shape)
+
+        # Split Column name so as to remove '_Ia'
+        df.columns = [col.split(split_value)[0] for col in df.columns]
+        print("final df columns", df.columns)
+
+        # print(df)
+
+        for column in df.columns:
+            min_val = df[column].min()
+            max_val = df[column].max()
+
+            if min_val == max_val:
+                df[column] = 128  # If min and max are the same, set the column to 128 (midpoint of 0-255)
+            else:
+                df[column] = (df[column] - min_val) / (max_val - min_val) * 255
+
+        print("Original DataFrame:")
+        # print(df)
+
+        self.df = df
+        self.column_names = df.columns.tolist()
+
+        update_segments_thread = threading.Thread(target=self.update_segments)
+        # Start the thread
+        update_segments_thread.start()
+
+        # update_segments_thread.join()
+
+        # self.color_timer = QTimer(self)
+        # self.color_timer.timeout.connect(self.updateColors)
+        # self.color_timer.start(1000)
+
+    def button3_clicked(self):
+        split_value = "_Ib"
+        print("btn1")
+        df = pd.read_csv('S17_Tadasana_Afferents_Test.csv')
+        print('shape before filter:', df.shape)
+
+        filtered_columns = df.filter(like=split_value, axis=1)
+        df = df[filtered_columns.columns]
+        print('shape after filter:', df.shape)
+
+        # Split Column name so as to remove '_Ia'
+        df.columns = [col.split(split_value)[0] for col in df.columns]
+        print("final df columns", df.columns)
+
+        # print(df)
+
+        for column in df.columns:
+            min_val = df[column].min()
+            max_val = df[column].max()
+
+            if min_val == max_val:
+                df[column] = 128  # If min and max are the same, set the column to 128 (midpoint of 0-255)
+            else:
+                df[column] = (df[column] - min_val) / (max_val - min_val) * 255
+
+        print("Original DataFrame:")
+        # print(df)
+
+        self.df = df
+        self.column_names = df.columns.tolist()
+
+        update_segments_thread = threading.Thread(target=self.update_segments)
+        # Start the thread
+        update_segments_thread.start()
+
+        # update_segments_thread.join()
+        #
+        # self.color_timer = QTimer(self)
+        # self.color_timer.timeout.connect(self.updateColors)
+        # self.color_timer.start(1000)
+
+
+    def button4_clicked(self):
+        pass
+
+    def button5_clicked(self):
+        pass
+
+    def button6_clicked(self):
+        pass
+
+    def button7_clicked(self):
+        pass
+
+    def button8_clicked(self):
+        pass
+
+    def data_ready_thread(self):
+        pass
+
+class Worker(QObject):
+    finished = pyqtSignal()
+
+    def run(self):
+        for i in range(10):
+            self.update_signal.emit(f"Update {i}")
+
+        self.finished.emit()
 
 
 # Run the App
