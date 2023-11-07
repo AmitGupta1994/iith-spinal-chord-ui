@@ -14,7 +14,7 @@ class SpinalChordSegment(QWidget):
         self.rect_width = 400
 
         # Calculate the height of the rectangle based on the number of circles
-        self.circle_radius = 2.5
+        self.circle_radius = 3
         self.circle_spacing = 6
         self.num_circles = 2
         # self.circle_y = 0
@@ -32,6 +32,12 @@ class SpinalChordSegment(QWidget):
         self.circle_color = QColor(0, 0, 0)  # Default circle color
 
         self.num_rows = int(len(muscles_name_list) / 2)
+
+    # def muscles_name_list_data(self,muscles_name_list):
+    #     self.muscles_name_list = muscles_name_list
+
+    def update_segment(self):
+        self.update()
 
     def setColor(self, color):
         self.color = color
@@ -59,74 +65,21 @@ class SpinalChordSegment(QWidget):
 
         # Draw circles in rows
         count = 0
-        # for row in range(self.num_rows):
-        #     circle_x = self.circle_spacing + self.circle_radius
-        #     for _ in range(self.num_circles):
-        #         painter.setBrush(QBrush(self.circle_color))  # Circle color
-        #         painter.drawEllipse(circle_x, self.circle_y + row * self.height() / self.num_rows,
-        #                             2 * self.circle_radius,
-        #                             2 * self.circle_radius)
-        #
-        #         # # Draw the circle name text below the circle
-        #         # circle_name = self.muscles_name_list[count].name
-        #         # circle_name_font = QFont("Arial", 8)  # Adjust the font as needed
-        #         # painter.setFont(circle_name_font)
-        #         # circle_name_rect = painter.boundingRect(self.rect(), 0, circle_name)
-        #         # circle_name_x = circle_x - (circle_name_rect.width() - 2 * self.circle_radius) / 2
-        #         # circle_name_y = self.circle_y + 2 * self.circle_radius + row * self.height() / self.num_rows + circle_name_rect.height()
-        #         # painter.drawText(circle_name_x, circle_name_y, circle_name)
-        #         #
-        #         # circle_x += 2 * (self.circle_radius + self.circle_spacing)
-        #
-        #         # Draw the same text at the side of the circle
-        #         side_text = self.muscles_name_list[count].name
-        #         side_text_font = QFont("Arial", 10)  # Adjust the font as needed
-        #         painter.setFont(side_text_font)
-        #         side_text_x = circle_x + 2 * self.circle_radius + self.circle_spacing
-        #         side_text_y = self.circle_y + row * self.height() / self.num_rows + self.circle_radius
-        #         painter.drawText(side_text_x, side_text_y, side_text)
-        #
-        #         circle_x += 2 * (self.circle_radius + self.circle_spacing)
-        #
-        #         count = count + 1
-
-        # for row in range(self.num_rows):
-        #     circle_x = self.circle_spacing + self.circle_radius
-        #
-        #     # Draw the name of the first circle
-        #     circle_name = self.muscles_name_list[count].name
-        #     circle_name_font = QFont("Arial", 8)  # Adjust the font as needed
-        #     painter.setFont(circle_name_font)
-        #     circle_name_rect = painter.boundingRect(self.rect(), 0, circle_name)
-        #     circle_name_x = circle_x - (circle_name_rect.width() - 2 * self.circle_radius) / 2
-        #     circle_name_y = self.circle_y + 2 * self.circle_radius + circle_name_rect.height() + row * self.height() / self.num_rows
-        #     painter.drawText(circle_name_x, circle_name_y, circle_name)
-        #
-        #     # Draw the first circle
-        #     painter.setBrush(QBrush(QColor(0, 0, 255)))  # Circle color
-        #     painter.drawEllipse(circle_x, self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius,
-        #                         2 * self.circle_radius)
-        #
-        #     # Draw the name of the second circle
-        #     circle_name = self.muscles_name_list[count+1].name
-        #     circle_name_font = QFont("Arial", 8)  # Adjust the font as needed
-        #     painter.setFont(circle_name_font)
-        #     circle_name_rect = painter.boundingRect(self.rect(), 0, circle_name)
-        #     circle_name_x = circle_x - (circle_name_rect.width() - 2 * self.circle_radius) / 2
-        #     circle_name_y = self.circle_y + 2 * self.circle_radius + circle_name_rect.height() + row * self.height() / self.num_rows
-        #     painter.drawText(circle_name_x + 2 * (self.circle_radius + self.circle_spacing), circle_name_y, circle_name)
-        #
-        #     # Draw the second circle
-        #     painter.setBrush(QBrush(QColor(0, 0, 255)))  # Circle color
-        #     painter.drawEllipse(circle_x + 2 * (self.circle_radius + self.circle_spacing),
-        #                         self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius, 2 * self.circle_radius)
-        #
-        #     count = count + 1
 
         for row in range(self.num_rows):
             circle_x = self.circle_spacing + self.circle_radius + 100
 
             # Draw the name of the first circle to the left of the circle
+            circle_color_value = self.muscles_name_list[count].value
+
+            circle_color = QColor(0, 0, 0)
+            if circle_color_value == 1:
+                circle_color = QColor(255, 0, 0)
+            elif circle_color_value == 2:
+                circle_color = QColor(0, 255, 0)
+            elif circle_color_value == 3:
+                circle_color = QColor(0, 0, 255)
+
             circle_name = self.muscles_name_list[count].desc
             circle_name_font = QFont("Arial", 8)  # Adjust the font as needed
             painter.setFont(circle_name_font)
@@ -136,12 +89,22 @@ class SpinalChordSegment(QWidget):
             painter.drawText(circle_name_x - circle_name_rect.width(), circle_name_y, circle_name)
 
             # Draw the first circle
-            painter.setBrush(QBrush(self.circle_color))  # Circle color
+            painter.setBrush(QBrush(circle_color))  # Circle color
             painter.drawEllipse(circle_x, self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius,
                                 2 * self.circle_radius)
 
             # Draw the name of the second circle to the right of the circle
-            circle_name = self.muscles_name_list[count+1].desc
+            circle_color_value = self.muscles_name_list[count+1].value
+
+            circle_color = QColor(0, 0, 0)
+            if circle_color_value == 1:
+                circle_color = QColor(255, 0, 0)
+            elif circle_color_value == 2:
+                circle_color = QColor(0, 255, 0)
+            elif circle_color_value == 3:
+                circle_color = QColor(0, 0, 255)
+
+            circle_name = self.muscles_name_list[count + 1].desc
             circle_name_font = QFont("Arial", 8)  # Adjust the font as needed
             painter.setFont(circle_name_font)
             circle_name_rect = painter.boundingRect(self.rect(), 0, circle_name)
@@ -150,9 +113,10 @@ class SpinalChordSegment(QWidget):
             painter.drawText(circle_x + 20 * (self.circle_radius + self.circle_spacing), circle_name_y, circle_name)
 
             # Draw the second circle
-            painter.setBrush(QBrush(self.circle_color))  # Circle color
+            painter.setBrush(QBrush(circle_color))  # Circle color
             painter.drawEllipse(circle_x + 18 * (self.circle_radius + self.circle_spacing),
-                                self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius, 2 * self.circle_radius)
+                                self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius,
+                                2 * self.circle_radius)
 
             count = count + 1
 
