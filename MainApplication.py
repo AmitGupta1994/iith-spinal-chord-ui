@@ -223,35 +223,21 @@ class MainApplication(QMainWindow):
         main_layout.addWidget(self.segment_s1)
         main_layout.addWidget(self.segment_s2)
 
-        # Add the UI loaded from the .ui file to the main layout
-        # main_layout.addWidget(self.centralWidget())
-
-        # Set the main layout for the rectangles widget
-        # rectangles_widget.setLayout(rectangles_layout)
-
-        # Set the rectangles widget as the content for the scroll area
-        # scroll_area.setWidget(rectangles_widget)
-
-        # Add the scroll area to the main layout
-        # main_layout.addWidget(scroll_area)
-
         # Set the main layout for the main window
         central_widget = QWidget()
         central_widget.setLayout(main_layout)
         self.setCentralWidget(central_widget)
 
-        # for index, segment in enumerate(self.segments):
-        #     segment.setCircleColor(QColor(255, 0, 0) if index % 2 == 0 else QColor(0, 0, 255))  # Alternate colors
-        # Create a QTimer to update colors from the main window
         self.color_timer = QTimer(self)
         self.color_timer.timeout.connect(self.updateColors)
         self.color_timer.start(1000)  # 1000 ms (1 second) interval
 
     def updateColors(self):
-        # Update the colors of the rectangles
+
+        # TODO Loop for the ROW in the File to be Provided
         for segment in self.segments:
             for muscles in segment.muscles_name_list:
-                muscles.value = random.randint(0, 2)
+                muscles.value = random.randint(0, 3)
 
             segment.update_segment()
 
