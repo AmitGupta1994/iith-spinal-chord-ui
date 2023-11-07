@@ -126,14 +126,14 @@ class MainApplication(QMainWindow):
         # L4
         self.segment_l4_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
+            SpinalChordMuscle('rect_fem_l', 'Rectus Femoris Left'), SpinalChordMuscle('rect_fem_r', 'Rectus Femoris Right'),
+            SpinalChordMuscle('vas_int_l', 'Vastus Intermedius Left'), SpinalChordMuscle('vas_int_r', 'Vastus Intermedius Right'),
+            SpinalChordMuscle('glut_med1_l', 'Gluteus Medius 1 Left'), SpinalChordMuscle('glut_med1_r', 'Gluteus Medius 1 Right'),
+            SpinalChordMuscle('glut_med2_l', 'Gluteus Medius 2 Left'), SpinalChordMuscle('glut_med2_r', 'Gluteus Medius 2 Right'),
+            SpinalChordMuscle('glut_med3_l', 'Gluteus Medius 3 Left'), SpinalChordMuscle('glut_med3_r', 'Gluteus Medius 3 Right'),
+            SpinalChordMuscle('tfl_l', 'Tensor Fascia Latae Left'), SpinalChordMuscle('tfl_r', 'Tensor Fascia Latae Right'),
+            SpinalChordMuscle('tib_ant_l', 'Tibialis Anterior Left'), SpinalChordMuscle('tib_ant_r', 'Tibialis Anterior Right'),
+            SpinalChordMuscle('tib_post_l', 'Tibialis Posterior Left'), SpinalChordMuscle('tib_post_r', 'Tibialis Posterior Right'),
 
         ]
         self.segment_l4 = SpinalChordSegment("L4", self.segment_l4_muscles)
