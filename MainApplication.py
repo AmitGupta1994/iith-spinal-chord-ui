@@ -96,7 +96,7 @@ class MainApplication(QMainWindow):
         # L1
         self.segment_l1_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
+            SpinalChordMuscle('psoas_l', 'Psoas Major Left'), SpinalChordMuscle('psoas_r', 'Psoas Major Right'),
         ]
         self.segment_l1= SpinalChordSegment("L1", self.segment_l1_muscles)
 
