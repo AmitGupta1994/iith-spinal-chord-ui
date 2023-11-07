@@ -23,18 +23,18 @@ class MainApplication(QMainWindow):
         # C5
         self.segment_c5_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
+            SpinalChordMuscle('DELT1_l', 'Deltoid 1 Left'), SpinalChordMuscle('DELT1', 'Deltoid 1 Right'),
+            SpinalChordMuscle('DELT2_l', 'Deltoid 2 Left'), SpinalChordMuscle('DELT2', 'Deltoid 2 Right'),
+            SpinalChordMuscle('DELT3_l', 'Deltoid 3 Left'), SpinalChordMuscle('DELT3', 'Deltoid 3 Right'),
+            SpinalChordMuscle('INFSP_l', 'Infraspinatus Left'), SpinalChordMuscle('INFSP', 'Infraspinatus Right'),
+            SpinalChordMuscle('SUPSP_l', 'Supraspinatus Left'), SpinalChordMuscle('SUPSP', 'Supraspinatus Right'),
+            SpinalChordMuscle('TMIN_l', 'Teres Minor Left'), SpinalChordMuscle('TMIN', 'Teres Minor Right'),
+            SpinalChordMuscle('BIClong_l', 'Biceps Brachii Long Head Left'), SpinalChordMuscle('BIClong', 'Biceps Brachii Long Head Right'),
+            SpinalChordMuscle('BICshort_l', 'Biceps Brachii Short Head Left'), SpinalChordMuscle('BICshort', 'Biceps Brachii Short Head Right'),
+            SpinalChordMuscle('CORB_l', 'Corachobrachialis Left'), SpinalChordMuscle('CORB', 'Corachobrachialis Right'),
+            SpinalChordMuscle('PECM1_l', 'Pectoralis Major 1 Left'), SpinalChordMuscle('PECM1', 'Pectoralis Major 1 Right'),
+            SpinalChordMuscle('PECM2_l', 'Pectoralis Major 2 Left'), SpinalChordMuscle('PECM2', 'Pectoralis Major 2 Right'),
+            SpinalChordMuscle('PECM3_l', 'Pectoralis Major 2 Left'), SpinalChordMuscle('PECM3', 'Pectoralis Major 2 Right'),
 
         ]
         self.segment_c5 = SpinalChordSegment("C5", self.segment_c5_muscles)
@@ -253,6 +253,7 @@ class MainApplication(QMainWindow):
         central_widget.setLayout(main_layout)
         self.setCentralWidget(central_widget)
 
+        # Update Every 1 second
         self.color_timer = QTimer(self)
         self.color_timer.timeout.connect(self.updateColors)
         self.color_timer.start(1000)  # 1000 ms (1 second) interval

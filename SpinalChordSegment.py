@@ -11,7 +11,7 @@ class SpinalChordSegment(QWidget):
         self.name = name
         self.muscles_name_list = muscles_name_list
 
-        self.rect_width = 400
+        self.rect_width = 600
 
         # Calculate the height of the rectangle based on the number of circles
         self.circle_radius = 3.5
@@ -67,7 +67,7 @@ class SpinalChordSegment(QWidget):
         count = 0
 
         for row in range(self.num_rows):
-            circle_x = self.circle_spacing + self.circle_radius + 100
+            circle_x = self.circle_spacing + self.circle_radius + 200
 
             # Draw the name of the first circle to the left of the circle
             circle_color_value = self.muscles_name_list[count].value
@@ -84,7 +84,7 @@ class SpinalChordSegment(QWidget):
             circle_name_font = QFont("Arial", 8)  # Adjust the font as needed
             painter.setFont(circle_name_font)
             circle_name_rect = painter.boundingRect(self.rect(), 0, circle_name)
-            circle_name_x = circle_x - (circle_name_rect.width() - 2 * self.circle_radius) / 2
+            circle_name_x = circle_x - 10
             circle_name_y = self.circle_y + row * self.height() / self.num_rows + self.circle_y
             painter.drawText(circle_name_x - circle_name_rect.width(), circle_name_y, circle_name)
 
@@ -118,7 +118,7 @@ class SpinalChordSegment(QWidget):
                                 self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius,
                                 2 * self.circle_radius)
 
-            count = count + 1
+            count = count + 2
 
         # for row in range(self.num_rows):
         #     y = row * self.height()
