@@ -159,16 +159,16 @@ class MainApplication(QMainWindow):
         # S1
         self.segment_s1_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
+            SpinalChordMuscle('glut_max1_l', 'Gluteus Maximus 1 Left'), SpinalChordMuscle('glut_max1_r', 'Gluteus Maximus 1 Right'),
+            SpinalChordMuscle('glut_max2_l', 'Gluteus Maximus 2 Left'), SpinalChordMuscle('glut_max2_r', 'Gluteus Maximus 2 Right'),
+            SpinalChordMuscle('glut_max3_l', 'Gluteus Maximus 3 Left'), SpinalChordMuscle('glut_max3_r', 'Gluteus Maximus 3 Right'),
+            SpinalChordMuscle('gem_l', 'Gemelli Left'), SpinalChordMuscle('gem_r', 'Gemelli Right'),
+            SpinalChordMuscle('quad_fem_l', 'Quadratus Femoris Left'), SpinalChordMuscle('quad_fem_r', 'Quadratus Femoris Right'),
+            SpinalChordMuscle('bifemlh_l', 'Biceps Femoris Long Head Left'), SpinalChordMuscle('bifemlh_r', 'Biceps Femoris Long Head Right'),
+            SpinalChordMuscle('bifemsh_l', 'Biceps Femoris Short Head Left'), SpinalChordMuscle('bifemsh_r', 'Biceps Femoris Short Head Right'),
+            SpinalChordMuscle('peri_l', 'Piriformis Left'), SpinalChordMuscle('peri_r', 'Piriformis Right'),
+            SpinalChordMuscle('med_gas_l', 'Medial Gastrocnemius Left'), SpinalChordMuscle('med_gas_r', 'Medial Gastrocnemius Right'),
+            SpinalChordMuscle('soleus_l', 'Soleus Left'), SpinalChordMuscle('soleus_r', 'Soleus Right'),
 
         ]
         self.segment_s1 = SpinalChordSegment("S1", self.segment_s1_muscles)
