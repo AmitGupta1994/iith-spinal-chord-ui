@@ -87,8 +87,8 @@ class MainApplication(QMainWindow):
         # T7-T12
         self.segment_t7_t12_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
+            SpinalChordMuscle('extobl_l', 'External Oblique Left'), SpinalChordMuscle('extobl_r', 'External Oblique Right'),
+            SpinalChordMuscle('intobl_l', 'Internal Oblique Left'), SpinalChordMuscle('intobl_r', 'Internal Oblique Right'),
 
         ]
         self.segment_t7_t12 = SpinalChordSegment("T7-T12", self.segment_t7_t12_muscles)
