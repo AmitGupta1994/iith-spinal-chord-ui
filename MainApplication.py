@@ -184,18 +184,47 @@ class MainApplication(QMainWindow):
 
         ####################################
         # Create a layout for the main window
+        main_layout = QHBoxLayout()
+        main_layout.setAlignment(Qt.AlignLeft)
+
+        # Get references to the buttons in the .ui file
+        btn_width = 180
+        btn_height = 40
+        self.button1 = QPushButton("Tadasana-Ia")
+        self.button1.setFixedSize(btn_width, btn_height)
+        self.button2 = QPushButton("Tadasana-II")
+        self.button2.setFixedSize(btn_width, btn_height)
+        self.button3 = QPushButton("Tadasana-Ib")
+        self.button3.setFixedSize(btn_width, btn_height)
+        self.button4 = QPushButton("Tadasana-Activation")
+        self.button4.setFixedSize(btn_width, btn_height)
+
+        self.button5 = QPushButton("Virkshasana-Ia")
+        self.button5.setFixedSize(btn_width, btn_height)
+        self.button6 = QPushButton("Virkshasana-II")
+        self.button6.setFixedSize(btn_width, btn_height)
+        self.button7 = QPushButton("Virkshasana-Ib")
+        self.button7.setFixedSize(btn_width, btn_height)
+        self.button8 = QPushButton("Virkshasana-Activation")
+        self.button8.setFixedSize(btn_width, btn_height)
+
+        # Create a horizontal layout for the buttons at the top
+        buttons_layout = QVBoxLayout()
+        buttons_layout.setAlignment(Qt.AlignCenter)
+
+        # Add the buttons to the buttons layout
+        buttons_layout.addWidget(self.button1)
+        buttons_layout.addWidget(self.button2)
+        buttons_layout.addWidget(self.button3)
+        buttons_layout.addWidget(self.button4)
+        buttons_layout.addWidget(self.button5)
+        buttons_layout.addWidget(self.button6)
+        buttons_layout.addWidget(self.button7)
+        buttons_layout.addWidget(self.button8)
+
+
+        # Add the buttons layout to the rectangle main layout
         self.segments = []
-
-        # # Create a scrollable area
-        # scroll_area = QScrollArea()
-        # scroll_area.setWidgetResizable(True)
-
-        main_layout = QVBoxLayout()
-
-        # Create a widget to hold the rectangles
-        rectangles_widget = QWidget()
-        rectangles_layout = QVBoxLayout(rectangles_widget)
-
 
         self.segments.append(self.segment_c5)
         self.segments.append(self.segment_c6)
@@ -211,42 +240,24 @@ class MainApplication(QMainWindow):
         self.segments.append(self.segment_s1)
         self.segments.append(self.segment_s2)
 
-        # Get references to the buttons in the .ui file
-        self.button1 = self.findChild(QPushButton, "activity1")
-        self.button2 = self.findChild(QPushButton, "activity2")
-        self.button3 = self.findChild(QPushButton, "activity3")
-        self.button4 = self.findChild(QPushButton, "activity4")
+        rec_main_layout = QVBoxLayout()
 
-        # Create a layout for the main window
-        main_layout = QVBoxLayout()
-        # main_layout.setAlignment(Qt.AlignCenter)
+        rec_main_layout.addWidget(self.segment_c5)
+        rec_main_layout.addWidget(self.segment_c6)
+        rec_main_layout.addWidget(self.segment_c7)
+        rec_main_layout.addWidget(self.segment_c8)
+        rec_main_layout.addWidget(self.segment_t7_t12)
+        rec_main_layout.addWidget(self.segment_l1)
+        rec_main_layout.addWidget(self.segment_l2)
+        rec_main_layout.addWidget(self.segment_l3)
+        rec_main_layout.addWidget(self.segment_l4)
+        rec_main_layout.addWidget(self.segment_l5)
+        rec_main_layout.addWidget(self.segment_s1)
+        rec_main_layout.addWidget(self.segment_s2)
 
-        # Create a horizontal layout for the buttons at the top
-        buttons_layout = QHBoxLayout()
-
-        # Add the buttons to the buttons layout
-        buttons_layout.addWidget(self.button1)
-        buttons_layout.addWidget(self.button2)
-        buttons_layout.addWidget(self.button3)
-        buttons_layout.addWidget(self.button4)
-
-        # Add the buttons layout to the main layout
+        # Add all to main layout
         main_layout.addLayout(buttons_layout)
-
-        main_layout.addWidget(self.segment_c5)
-        main_layout.addWidget(self.segment_c6)
-        main_layout.addWidget(self.segment_c7)
-        main_layout.addWidget(self.segment_c8)
-        main_layout.addWidget(self.segment_t7_t12)
-        main_layout.addWidget(self.segment_l1)
-        main_layout.addWidget(self.segment_l2)
-        main_layout.addWidget(self.segment_l3)
-        main_layout.addWidget(self.segment_l4)
-        main_layout.addWidget(self.segment_l5)
-        main_layout.addWidget(self.segment_s1)
-        main_layout.addWidget(self.segment_s2)
-
-
+        main_layout.addLayout(rec_main_layout)
 
         # Set the main layout for the main window
         central_widget = QWidget()
