@@ -14,7 +14,7 @@ class SpinalChordSegment(QWidget):
         self.rect_width = 400
 
         # Calculate the height of the rectangle based on the number of circles
-        self.circle_radius = 3
+        self.circle_radius = 3.5
         self.circle_spacing = 6
         self.num_circles = 2
         # self.circle_y = 0

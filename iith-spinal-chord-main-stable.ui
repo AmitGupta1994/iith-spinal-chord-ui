@@ -17,13 +17,32 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label_spinal_chord">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>1000</width>
+      <height>2000</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <widget class="QPushButton" name="activity1">
     <property name="geometry">
      <rect>
-      <x>1040</x>
-      <y>10</y>
-      <width>201</width>
-      <height>31</height>
+      <x>1290</x>
+      <y>310</y>
+      <width>281</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="text">
@@ -33,10 +52,10 @@
    <widget class="QPushButton" name="activity2">
     <property name="geometry">
      <rect>
-      <x>1270</x>
-      <y>10</y>
-      <width>201</width>
-      <height>31</height>
+      <x>1290</x>
+      <y>380</y>
+      <width>281</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="text">
@@ -46,27 +65,14 @@
    <widget class="QPushButton" name="activity3">
     <property name="geometry">
      <rect>
-      <x>1500</x>
-      <y>10</y>
-      <width>201</width>
-      <height>31</height>
+      <x>1290</x>
+      <y>450</y>
+      <width>281</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="text">
      <string>Activity3</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="activity4">
-    <property name="geometry">
-     <rect>
-      <x>1040</x>
-      <y>50</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Activity4</string>
     </property>
    </widget>
   </widget>

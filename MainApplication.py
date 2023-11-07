@@ -1,10 +1,11 @@
 import random
 import sys
 
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtGui import QPixmap, QColor
-from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout, QWidget, QVBoxLayout, QScrollArea
+from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout, QWidget, QVBoxLayout, QScrollArea, QPushButton
 from PyQt5.uic import loadUi
+from PyQt5.uic.uiparser import QtCore
 
 from SpinalChordMuscle import SpinalChordMuscle
 from SpinalChordSegment import SpinalChordSegment
@@ -210,6 +211,28 @@ class MainApplication(QMainWindow):
         self.segments.append(self.segment_s1)
         self.segments.append(self.segment_s2)
 
+        # Get references to the buttons in the .ui file
+        self.button1 = self.findChild(QPushButton, "activity1")
+        self.button2 = self.findChild(QPushButton, "activity2")
+        self.button3 = self.findChild(QPushButton, "activity3")
+        self.button4 = self.findChild(QPushButton, "activity4")
+
+        # Create a layout for the main window
+        main_layout = QVBoxLayout()
+        main_layout.setAlignment(Qt.AlignCenter)
+
+        # Create a horizontal layout for the buttons at the top
+        buttons_layout = QHBoxLayout()
+
+        # Add the buttons to the buttons layout
+        buttons_layout.addWidget(self.button1)
+        buttons_layout.addWidget(self.button2)
+        buttons_layout.addWidget(self.button3)
+        buttons_layout.addWidget(self.button4)
+
+        # Add the buttons layout to the main layout
+        main_layout.addLayout(buttons_layout)
+
         main_layout.addWidget(self.segment_c5)
         main_layout.addWidget(self.segment_c6)
         main_layout.addWidget(self.segment_c7)
@@ -222,6 +245,8 @@ class MainApplication(QMainWindow):
         main_layout.addWidget(self.segment_l5)
         main_layout.addWidget(self.segment_s1)
         main_layout.addWidget(self.segment_s2)
+
+
 
         # Set the main layout for the main window
         central_widget = QWidget()
