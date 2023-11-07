@@ -115,10 +115,10 @@ class MainApplication(QMainWindow):
         # L3
         self.segment_l3_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
-            SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
+            SpinalChordMuscle('add_mag2_l', 'Adductor Magnus Left'), SpinalChordMuscle('add_mag2_r', 'Adductor Magnus Right'),
+            SpinalChordMuscle('sar_l', 'Sartorius Left'), SpinalChordMuscle('sar_r', 'Sartorius Right'),
+            SpinalChordMuscle('rect_fem_l', 'Rectus Femoris Left'), SpinalChordMuscle('rect_fem_r', 'Rectus Femoris Right'),
+            SpinalChordMuscle('vas_int_l', 'Vastus Intermedius Left'), SpinalChordMuscle('vas_int_r', 'Vastus Intermedius Right'),
 
         ]
         self.segment_l3= SpinalChordSegment("L3", self.segment_l3_muscles)
