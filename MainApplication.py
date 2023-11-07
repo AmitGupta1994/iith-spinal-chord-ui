@@ -219,7 +219,7 @@ class MainApplication(QMainWindow):
 
         # Create a layout for the main window
         main_layout = QVBoxLayout()
-        main_layout.setAlignment(Qt.AlignCenter)
+        # main_layout.setAlignment(Qt.AlignCenter)
 
         # Create a horizontal layout for the buttons at the top
         buttons_layout = QHBoxLayout()
