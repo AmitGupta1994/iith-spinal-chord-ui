@@ -303,6 +303,12 @@ class MainApplication(QMainWindow):
 
                 segment.update_segment()
 
+        #Reset
+        for segment in self.segments:
+            for muscles in segment.muscles_name_list:
+                muscles.value = 0
+            segment.reset_segment()
+
     def updateColors(self):
         for segment in self.segments:
             segment.update_segment()
@@ -436,13 +442,109 @@ class MainApplication(QMainWindow):
         pass
 
     def button5_clicked(self):
-        pass
+        split_value = "_Ia"
+        print("btn1")
+        df = pd.read_csv('S17_Vrikshasana_Afferents_Test.csv')
+        print('shape before filter:', df.shape)
+
+        filtered_columns = df.filter(like=split_value, axis=1)
+        df = df[filtered_columns.columns]
+        print('shape after filter:', df.shape)
+
+        # Split Column name so as to remove '_Ia'
+        df.columns = [col.split(split_value)[0] for col in df.columns]
+        print("final df columns", df.columns)
+
+        # print(df)
+
+        for column in df.columns:
+            min_val = df[column].min()
+            max_val = df[column].max()
+
+            if min_val == max_val:
+                df[column] = 128  # If min and max are the same, set the column to 128 (midpoint of 0-255)
+            else:
+                df[column] = (df[column] - min_val) / (max_val - min_val) * 255
+
+        print("Original DataFrame:")
+        # print(df)
+
+        self.df = df
+        self.column_names = df.columns.tolist()
+
+        update_segments_thread = threading.Thread(target=self.update_segments)
+        # Start the thread
+        update_segments_thread.start()
 
     def button6_clicked(self):
-        pass
+        split_value = "_II"
+        print("btn1")
+        df = pd.read_csv('S17_Vrikshasana_Afferents_Test.csv')
+        print('shape before filter:', df.shape)
+
+        filtered_columns = df.filter(like=split_value, axis=1)
+        df = df[filtered_columns.columns]
+        print('shape after filter:', df.shape)
+
+        # Split Column name so as to remove '_Ia'
+        df.columns = [col.split(split_value)[0] for col in df.columns]
+        print("final df columns", df.columns)
+
+        # print(df)
+
+        for column in df.columns:
+            min_val = df[column].min()
+            max_val = df[column].max()
+
+            if min_val == max_val:
+                df[column] = 128  # If min and max are the same, set the column to 128 (midpoint of 0-255)
+            else:
+                df[column] = (df[column] - min_val) / (max_val - min_val) * 255
+
+        print("Original DataFrame:")
+        # print(df)
+
+        self.df = df
+        self.column_names = df.columns.tolist()
+
+        update_segments_thread = threading.Thread(target=self.update_segments)
+        # Start the thread
+        update_segments_thread.start()
 
     def button7_clicked(self):
-        pass
+        split_value = "_Ib"
+        print("btn1")
+        df = pd.read_csv('S17_Vrikshasana_Afferents_Test.csv')
+        print('shape before filter:', df.shape)
+
+        filtered_columns = df.filter(like=split_value, axis=1)
+        df = df[filtered_columns.columns]
+        print('shape after filter:', df.shape)
+
+        # Split Column name so as to remove '_Ia'
+        df.columns = [col.split(split_value)[0] for col in df.columns]
+        print("final df columns", df.columns)
+
+        # print(df)
+
+        for column in df.columns:
+            min_val = df[column].min()
+            max_val = df[column].max()
+
+            if min_val == max_val:
+                df[column] = 128  # If min and max are the same, set the column to 128 (midpoint of 0-255)
+            else:
+                df[column] = (df[column] - min_val) / (max_val - min_val) * 255
+
+        print("Original DataFrame:")
+        # print(df)
+
+        self.df = df
+        self.column_names = df.columns.tolist()
+
+        update_segments_thread = threading.Thread(target=self.update_segments)
+        # Start the thread
+        update_segments_thread.start()
 
     def button8_clicked(self):
         pass

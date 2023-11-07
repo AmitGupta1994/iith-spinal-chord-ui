@@ -36,6 +36,10 @@ class SpinalChordSegment(QWidget):
     # def muscles_name_list_data(self,muscles_name_list):
     #     self.muscles_name_list = muscles_name_list
 
+    def reset_segment(self):
+        self.circle_color = QColor(255, 255, 255)
+        self.update()
+
     def update_segment(self):
         self.update()
 
@@ -72,7 +76,9 @@ class SpinalChordSegment(QWidget):
             # Draw the name of the first circle to the left of the circle
             circle_color_value = self.muscles_name_list[count].value
 
-            circle_color = QColor(circle_color_value, 0, 0)
+            circle_color = QColor(255, 255, 255)
+            if circle_color_value >=50:
+                circle_color = QColor(0, circle_color_value, 0)
 
             circle_name = self.muscles_name_list[count].desc
             circle_name_font = QFont("Arial", 8)  # Adjust the font as needed
@@ -84,13 +90,16 @@ class SpinalChordSegment(QWidget):
 
             # Draw the first circle
             painter.setBrush(QBrush(circle_color))  # Circle color
-            painter.drawEllipse(circle_x, self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius,
-                                2 * self.circle_radius)
+            painter.drawRect(circle_x, circle_name_y-2, 40, 4)
+            # painter.drawEllipse(circle_x, self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius,
+            #                     2 * self.circle_radius)
 
             # Draw the name of the second circle to the right of the circle
             circle_color_value = self.muscles_name_list[count+1].value
 
-            circle_color = QColor(circle_color_value, 0, 0)
+            circle_color = QColor(255, 255, 255)
+            if circle_color_value >= 50:
+                circle_color = QColor(0, circle_color_value, 0)
 
             circle_name = self.muscles_name_list[count + 1].desc
             circle_name_font = QFont("Arial", 8)  # Adjust the font as needed
@@ -102,9 +111,10 @@ class SpinalChordSegment(QWidget):
 
             # Draw the second circle
             painter.setBrush(QBrush(circle_color))  # Circle color
-            painter.drawEllipse(circle_x + 18 * (self.circle_radius + self.circle_spacing),
-                                self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius,
-                                2 * self.circle_radius)
+            painter.drawRect(circle_x + 140, circle_name_y-2, 40, 4)
+            # painter.drawEllipse(circle_x + 18 * (self.circle_radius + self.circle_spacing),
+            #                     self.circle_y + row * self.height() / self.num_rows, 2 * self.circle_radius,
+            #                     2 * self.circle_radius)
 
             count = count + 2
 
