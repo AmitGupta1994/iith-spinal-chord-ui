@@ -79,29 +79,29 @@ class MainApplication(QMainWindow):
         # C8
         self.segment_c8_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
-            SpinalChordMuscle('ANC_l', 'Anconeus Right'), SpinalChordMuscle('ANC', 'Anconeus Right'),
+            SpinalChordMuscle('ANC_l', 'Anconeus Left'), SpinalChordMuscle('ANC', 'Anconeus Right'),
 
         ]
         self.segment_c8 = SpinalChordSegment("C8", self.segment_c8_muscles)
 
         # T7-T12
-        self.segment_c8_muscles = [
+        self.segment_t7_t12_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
 
         ]
-        self.segment_t7_t12 = SpinalChordSegment("T7-T12", self.segment_c8_muscles)
+        self.segment_t7_t12 = SpinalChordSegment("T7-T12", self.segment_t7_t12_muscles)
 
         # L1
-        self.segment_c8_muscles = [
+        self.segment_l1_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
         ]
-        self.segment_l1= SpinalChordSegment("L1", self.segment_c8_muscles)
+        self.segment_l1= SpinalChordSegment("L1", self.segment_l1_muscles)
 
         # L2
-        self.segment_c8_muscles = [
+        self.segment_l2_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
@@ -110,10 +110,10 @@ class MainApplication(QMainWindow):
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
 
         ]
-        self.segment_l2 = SpinalChordSegment("L2", self.segment_c8_muscles)
+        self.segment_l2 = SpinalChordSegment("L2", self.segment_l2_muscles)
 
         # L3
-        self.segment_c8_muscles = [
+        self.segment_l3_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
@@ -121,10 +121,10 @@ class MainApplication(QMainWindow):
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
 
         ]
-        self.segment_l3= SpinalChordSegment("L3", self.segment_c8_muscles)
+        self.segment_l3= SpinalChordSegment("L3", self.segment_l3_muscles)
 
         # L4
-        self.segment_c8_muscles = [
+        self.segment_l4_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
@@ -136,10 +136,10 @@ class MainApplication(QMainWindow):
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
 
         ]
-        self.segment_l4 = SpinalChordSegment("L4", self.segment_c8_muscles)
+        self.segment_l4 = SpinalChordSegment("L4", self.segment_l4_muscles)
 
         # L5
-        self.segment_c8_muscles = [
+        self.segment_l5_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
@@ -154,10 +154,10 @@ class MainApplication(QMainWindow):
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
 
         ]
-        self.segment_l5 = SpinalChordSegment("L5", self.segment_c8_muscles)
+        self.segment_l5 = SpinalChordSegment("L5", self.segment_l5_muscles)
 
         # S1
-        self.segment_c8_muscles = [
+        self.segment_s1_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
@@ -171,16 +171,16 @@ class MainApplication(QMainWindow):
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
 
         ]
-        self.segment_s1 = SpinalChordSegment("S1", self.segment_c8_muscles)
+        self.segment_s1 = SpinalChordSegment("S1", self.segment_s1_muscles)
 
         # S2
-        self.segment_c8_muscles = [
+        self.segment_s2_muscles = [
             SpinalChordMuscle('ercspn_l', 'Erector Spinae Left'), SpinalChordMuscle('ercspn_r', 'Erector Spinae Right'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
             SpinalChordMuscle('DELT1', 'Deltoid 1 Right'), SpinalChordMuscle('DELT2', 'Deltoid 1 Left'),
 
         ]
-        self.segment_s2 = SpinalChordSegment("S2", self.segment_c8_muscles)
+        self.segment_s2 = SpinalChordSegment("S2", self.segment_s2_muscles)
 
         ####################################
         # Create a layout for the main window
