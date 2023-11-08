@@ -469,7 +469,7 @@ class MainApplication(QMainWindow):
 
         count = 0
         for index, row in self.df.iterrows():
-            time.sleep(10)
+            # time.sleep(10)
             for segment in self.segments:
                 for muscles in segment.muscles_name_list:
                     try:
