@@ -1,12 +1,15 @@
+import os
 import random
 import sys
 import threading
+import time
 
 from PyQt5.QtCore import QTimer, Qt, QObject, pyqtSignal, QUrl
 from PyQt5.QtGui import QPixmap, QColor
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
-from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout, QWidget, QVBoxLayout, QScrollArea, QPushButton
+from PyQt5.QtWidgets import QMainWindow, QApplication, QHBoxLayout, QWidget, QVBoxLayout, QScrollArea, QPushButton, \
+    QLabel
 from PyQt5.uic import loadUi
 from PyQt5.uic.uiparser import QtCore
 import pandas as pd
@@ -345,31 +348,31 @@ class MainApplication(QMainWindow):
         buttons_layout.addWidget(self.button1)
         buttons_layout.addWidget(self.button2)
         buttons_layout.addWidget(self.button3)
-        buttons_layout.addWidget(self.button4)
+        # buttons_layout.addWidget(self.button4)
         buttons_layout.addWidget(self.button5)
         buttons_layout.addWidget(self.button6)
         buttons_layout.addWidget(self.button7)
-        buttons_layout.addWidget(self.button8)
+        # buttons_layout.addWidget(self.button8)
         buttons_layout.addWidget(self.button9)
         buttons_layout.addWidget(self.button10)
         buttons_layout.addWidget(self.button11)
-        buttons_layout.addWidget(self.button12)
+        # buttons_layout.addWidget(self.button12)
         buttons_layout.addWidget(self.button13)
         buttons_layout.addWidget(self.button14)
         buttons_layout.addWidget(self.button15)
-        buttons_layout.addWidget(self.button16)
+        # buttons_layout.addWidget(self.button16)
         buttons_layout.addWidget(self.button17)
         buttons_layout.addWidget(self.button18)
         buttons_layout.addWidget(self.button19)
-        buttons_layout.addWidget(self.button20)
+        # buttons_layout.addWidget(self.button20)
         buttons_layout.addWidget(self.button21)
         buttons_layout.addWidget(self.button22)
         buttons_layout.addWidget(self.button23)
-        buttons_layout.addWidget(self.button24)
+        # buttons_layout.addWidget(self.button24)
         buttons_layout.addWidget(self.button25)
         buttons_layout.addWidget(self.button26)
         buttons_layout.addWidget(self.button27)
-        buttons_layout.addWidget(self.button28)
+        # buttons_layout.addWidget(self.button28)
 
         # Add the buttons layout to the rectangle main layout
         self.segments = []
@@ -403,19 +406,23 @@ class MainApplication(QMainWindow):
         rec_main_layout.addWidget(self.segment_s1)
         rec_main_layout.addWidget(self.segment_s2)
 
-        # Create a video player and video widget
-        video_layout = QHBoxLayout()
+        # # Create a video player and video widget
+        # video_layout = QHBoxLayout()
+        #
+        # self.video_player = QMediaPlayer()
+        # self.video_widget = QVideoWidget()
+        # self.video_player.setVideoOutput(self.video_widget)
+        # video_layout.addWidget(self.video_widget)
 
-        self.video_player = QMediaPlayer()
-        self.video_widget = QVideoWidget()
-        self.video_player.setVideoOutput(self.video_widget)
-        video_layout.addWidget(self.video_widget)
+        # image_layout = QHBoxLayout()
+        self.image_label = QLabel()
+        self.image_label.setMaximumSize(600, 600)
 
         # Add all to main layout
         # main_layout.addLayout(self.video_widget)
         main_layout.addLayout(buttons_layout)
         main_layout.addLayout(rec_main_layout)
-        main_layout.addWidget(self.video_widget)
+        main_layout.addWidget(self.image_label)
 
         # Set the main layout for the main window
         central_widget = QWidget()
@@ -424,12 +431,12 @@ class MainApplication(QMainWindow):
         self.layout = QHBoxLayout(central_widget)
 
         # Create a video widget
-        self.video_widget = QVideoWidget()
-        self.video_widget.setMaximumSize(600, 600)
+        # self.video_widget = QVideoWidget()
+        # self.video_widget.setMaximumSize(600, 600)
 
         # Create a video player and set the video output
-        self.video_player = QMediaPlayer()
-        self.video_player.setVideoOutput(self.video_widget)
+        # self.video_player = QMediaPlayer()
+        # self.video_player.setVideoOutput(self.video_widget)
 
         # Create a play button
         self.play_button = QPushButton("Play Video")
@@ -437,7 +444,7 @@ class MainApplication(QMainWindow):
 
         # Add the video widget to the layout
         self.layout.addLayout(main_layout)
-        self.layout.addWidget(self.video_widget)
+        # self.layout.addWidget(self.video_widget)
 
         # self.play_video()
 
@@ -456,7 +463,13 @@ class MainApplication(QMainWindow):
     def update_segments(self):
         # TODO Play the video
 
+        self.image_files = [f for f in os.listdir(self.image_folder) if
+                            f.endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp'))]
+        self.current_image_index = 0
+
+        count = 0
         for index, row in self.df.iterrows():
+            time.sleep(10)
             for segment in self.segments:
                 for muscles in segment.muscles_name_list:
                     try:
@@ -466,6 +479,16 @@ class MainApplication(QMainWindow):
                         pass
 
                 segment.update_segment()
+
+            if index % 33 == 0:
+                print("called: ",index)
+                image_path = os.path.join(self.image_folder, self.image_files[self.current_image_index])
+                pixmap = QPixmap(image_path)
+                self.image_label.setPixmap(pixmap)
+                self.image_label.setScaledContents(True)
+
+                self.current_image_index = (self.current_image_index + 1) % len(self.image_files)
+
 
         # Reset
         for segment in self.segments:
@@ -484,9 +507,6 @@ class MainApplication(QMainWindow):
         self.video_player.play()
 
     def btn_click(self, split_value, df, video_path):
-        video_thread = threading.Thread(target=self.play_video(video_path))
-        # Start the thread
-        video_thread.start()
 
         filtered_columns = df.filter(like=split_value, axis=1)
         df = df[filtered_columns.columns]
@@ -502,10 +522,27 @@ class MainApplication(QMainWindow):
             min_val = df[column].min()
             max_val = df[column].max()
 
-            if min_val == max_val:
-                df[column] = 128  # If min and max are the same, set the column to 128 (midpoint of 0-255)
-            else:
-                df[column] = (df[column] - min_val) / (max_val - min_val) * 255
+            try:
+                if min_val == max_val:
+                    df[column] = 128  # If min and max are the same, set the column to 128 (midpoint of 0-255)
+                else:
+                    value = (df[column] - min_val) / (max_val - min_val) * 255
+                    df[column] = value.copy()
+
+                # if min_val == max_val:
+                #     df.loc[:, column] = 128  # If min and max are the same, set the column to 128
+                # else:
+                #     condition = (df[column] != min_val)
+                #     df.loc[condition, column] = (df.loc[condition, column] - min_val) / (
+                #                 max_val - min_val) * 255
+
+                # if min_val == max_val:
+                #     df.loc[:, column] = 128  # If min and max are the same, set the column to 128 (midpoint of 0-255)
+                # else:
+                #     df.loc[:, column] = (df.loc[:, column] - min_val) / (max_val - min_val) * 255
+
+            except:
+                continue
 
         print("Original DataFrame:")
         # print(df)
@@ -513,26 +550,36 @@ class MainApplication(QMainWindow):
         self.df = df
         self.column_names = df.columns.tolist()
 
+        # self.play_video(video_path)
+
         update_segments_thread = threading.Thread(target=self.update_segments)
         # Start the thread
         update_segments_thread.start()
+
+
+        # video_thread = threading.Thread(target=self.play_video(video_path))
+        # # Start the thread
+        # video_thread.start()
 
     def button1_clicked(self):
         split_value = "_Ia"
         df = pd.read_csv('S17_Tadasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Tadasana.mp4'
+        self.image_folder = 'Tadasana'
         self.btn_click(split_value, df, video_path)
 
     def button2_clicked(self):
         split_value = "_II"
         df = pd.read_csv('S17_Tadasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Tadasana.mp4'
+        self.image_folder = 'Tadasana'
         self.btn_click(split_value, df, video_path)
 
     def button3_clicked(self):
         split_value = "_Ib"
         df = pd.read_csv('S17_Tadasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Tadasana.mp4'
+        self.image_folder = 'Tadasana'
         self.btn_click(split_value, df, video_path)
 
     def button4_clicked(self):
@@ -542,18 +589,21 @@ class MainApplication(QMainWindow):
         split_value = "_Ia"
         df = pd.read_csv('S17_Trikonasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Trikonasana.mp4'
+        self.image_folder = 'Trikonasana'
         self.btn_click(split_value, df, video_path)
 
     def button6_clicked(self):
         split_value = "_II"
         df = pd.read_csv('S17_Trikonasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Trikonasana.mp4'
+        self.image_folder = 'Trikonasana'
         self.btn_click(split_value, df, video_path)
 
     def button7_clicked(self):
         split_value = "_Ib"
         df = pd.read_csv('S17_Trikonasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Trikonasana.mp4'
+        self.image_folder = 'Trikonasana'
         self.btn_click(split_value, df, video_path)
 
     def button8_clicked(self):
@@ -563,18 +613,21 @@ class MainApplication(QMainWindow):
         split_value = "_Ia"
         df = pd.read_csv('S17_Malasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Malasana.mp4'
+        self.image_folder = 'Malasana'
         self.btn_click(split_value, df, video_path)
 
     def button10_clicked(self):
         split_value = "_II"
         df = pd.read_csv('S17_Malasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Malasana.mp4'
+        self.image_folder = 'Malasana'
         self.btn_click(split_value, df, video_path)
 
     def button11_clicked(self):
         split_value = "_Ib"
         df = pd.read_csv('S17_Malasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Malasana.mp4'
+        self.image_folder = 'Malasana'
         self.btn_click(split_value, df, video_path)
 
     def button12_clicked(self):
@@ -584,18 +637,21 @@ class MainApplication(QMainWindow):
         split_value = "_Ia"
         df = pd.read_csv('S17_Utkatakonasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Utkatakonasana.mp4'
+        self.image_folder = 'Utkatakonasana'
         self.btn_click(split_value, df, video_path)
 
     def button14_clicked(self):
         split_value = "_II"
         df = pd.read_csv('S17_Utkatakonasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Utkatakonasana.mp4'
+        self.image_folder = 'Utkatakonasana'
         self.btn_click(split_value, df, video_path)
 
     def button15_clicked(self):
         split_value = "_Ib"
         df = pd.read_csv('S17_Utkatakonasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Utkatakonasana.mp4'
+        self.image_folder = 'Utkatakonasana'
         self.btn_click(split_value, df, video_path)
 
     def button16_clicked(self):
@@ -605,18 +661,21 @@ class MainApplication(QMainWindow):
         split_value = "_Ia"
         df = pd.read_csv('S17_Virabhadrasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Virabhadrasana.mp4'
+        self.image_folder = 'Virabhadrasana'
         self.btn_click(split_value, df, video_path)
 
     def button18_clicked(self):
         split_value = "_II"
         df = pd.read_csv('S17_Virabhadrasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Virabhadrasana.mp4'
+        self.image_folder = 'Virabhadrasana'
         self.btn_click(split_value, df, video_path)
 
     def button19_clicked(self):
         split_value = "_Ib"
         df = pd.read_csv('S17_Virabhadrasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Virabhadrasana.mp4'
+        self.image_folder = 'Virabhadrasana'
         self.btn_click(split_value, df, video_path)
 
     def button20_clicked(self):
@@ -626,18 +685,21 @@ class MainApplication(QMainWindow):
         split_value = "_Ia"
         df = pd.read_csv('S17_Vrikshasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Vrikshasana.mp4'
+        self.image_folder = 'Vrikshasana'
         self.btn_click(split_value, df, video_path)
 
     def button22_clicked(self):
         split_value = "_II"
         df = pd.read_csv('S17_Vrikshasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Vrikshasana.mp4'
+        self.image_folder = 'Vrikshasana'
         self.btn_click(split_value, df, video_path)
 
     def button23_clicked(self):
         split_value = "_Ib"
         df = pd.read_csv('S17_Vrikshasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Vrikshasana.mp4'
+        self.image_folder = 'Vrikshasana'
         self.btn_click(split_value, df, video_path)
 
     def button24_clicked(self):
@@ -647,18 +709,21 @@ class MainApplication(QMainWindow):
         split_value = "_Ia"
         df = pd.read_csv('S17_Parshvakonasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Parshvakonasana.mp4'
+        self.image_folder = 'Parshvakonasana'
         self.btn_click(split_value, df, video_path)
 
     def button26_clicked(self):
         split_value = "_II"
         df = pd.read_csv('S17_Parshvakonasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Parshvakonasana.mp4'
+        self.image_folder = 'Parshvakonasana'
         self.btn_click(split_value, df, video_path)
 
     def button27_clicked(self):
         split_value = "_Ib"
         df = pd.read_csv('S17_Parshvakonasana_Afferents_Test.csv')
         video_path = '/Users/amitgupta/PycharmProjects/iith-spinal-cord-ui/S17_Parshvakonasana.mp4'
+        self.image_folder = 'Parshvakonasana'
         self.btn_click(split_value, df, video_path)
 
     def button28_clicked(self):
